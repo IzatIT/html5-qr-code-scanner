@@ -8,10 +8,12 @@ const SCANNER_STATUS = {
     PAUSED: 'PAUSED',
 }
 
+const QRCODE_ELEMENT_ID = 'qr-code-container';
+const QRCODE_CONTAINER_SIZE = 300
+
 const QRScanner = () => {
     const [scanResult, setScanResult] = useState([""]);
     const [isScanning, setIsScanning] = useState(SCANNER_STATUS.STOPPED);
-    const QRCODE_ELEMENT_ID = 'qr-code-container';
     const html5QrCodeRef = useRef(null);
 
     const startScanning = async () => {
@@ -21,7 +23,7 @@ const QRScanner = () => {
 
         const config = {
             fps: 10,
-            qrbox: { width: 300, height: 300 },
+            qrbox: { width: QRCODE_CONTAINER_SIZE, height: QRCODE_CONTAINER_SIZE },
         };
 
         html5QrCodeRef.current
@@ -73,8 +75,8 @@ const QRScanner = () => {
         }}>
             <h1>QR Scanner</h1>
                <div style={{
-                   width: '300px',
-                   height: "300px",
+                   width: QRCODE_CONTAINER_SIZE,
+                   height: QRCODE_CONTAINER_SIZE,
                    marginBottom: "24px",
                    borderRadius: "8px",
                    border: '1px solid white',
@@ -82,7 +84,7 @@ const QRScanner = () => {
                    backgroundPosition: 'center',
                    backgroundSize: '110%',
                    overflow: 'hidden',
-                   minHeight: "300px"
+                   minHeight: QRCODE_CONTAINER_SIZE
                }}>
                    <div id={QRCODE_ELEMENT_ID} />
                </div>
